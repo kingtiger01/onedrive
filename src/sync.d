@@ -549,10 +549,6 @@ final class SyncEngine
 	{
 		log.log("Uploading: ", path);
 		JSONValue response;
-		if (getSize(path) <= thresholdFileSize) {
-			response = onedrive.simpleUpload(path, path);
-		} else {
-			response = session.upload(path, path);
 		try {
 			if (getSize(path) <= thresholdFileSize) {
 				response = onedrive.simpleUpload(path, path);
@@ -562,9 +558,8 @@ final class SyncEngine
 		} catch (OneDriveException e) {
 			if (!cfg.ignoreUploadErrors) throw e;
 			else log.log("Error on upload: ", e.error["error"]["message"]);
-		return;
+			return;
 		}
-
 		string id = response["id"].str;
 		string cTag = response["cTag"].str;
 		SysTime mtime = timeLastModified(path).toUTC();
@@ -572,7 +567,7 @@ final class SyncEngine
 		 * metadata of some type of files (ex. images) AFTER they have been
 		 * uploaded */
 		uploadLastModifiedTime(id, cTag, mtime);
-	}
+}
 
 	private void uploadDeleteItem(Item item, const(char)[] path)
 	{
