@@ -9,7 +9,7 @@ static import log;
 
 // threshold after which files will be uploaded using an upload session
 private long thresholdFileSize = 4 * 2^^20; // 4 MiB
-
+    
 private bool isItemFolder(const ref JSONValue item)
 {
 	return ("folder" in item) != null;
@@ -554,7 +554,8 @@ final class SyncEngine
 		} else {
 			response = session.upload(path, path);
 		}
-	}     catch (OneDriveException e) {
+    {
+	     catch (OneDriveException e) {
 	        if (!cfg.ignoreUploadErrors) throw e;
 		else log.log("Error on Upload: ", e.error["error"]["message"]);
 		return;
