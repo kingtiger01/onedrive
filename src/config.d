@@ -15,7 +15,7 @@ final class Config
 	// hashmap for the values found in the user config file
 	private string[string] values;
 
-	this(string configDirName)
+	this(string configDirName, bool ignoreErrors)
 	{
 		refreshTokenFilePath = configDirName ~ "/refresh_token";
 		deltaLinkFilePath = configDirName ~ "/delta_link";
