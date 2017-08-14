@@ -553,13 +553,18 @@ final class SyncEngine
 			response = onedrive.simpleUpload(path, path);
 		} else {
 			response = session.upload(path, path);
-		}
-    {
-	     catch (OneDriveException e) {
-	        if (!cfg.ignoreUploadErrors) throw e;
-		else log.log("Error on Upload: ", e.error["error"]["message"]);
+		try {
+			if (getSize(path) <= thresholdFileSize) {
+				response = onedrive.simpleUpload(path, path);
+			} else {
+				response = session.upload(path, path);
+			}
+		} catch (OneDriveException e) {
+			if (!cfg.ignoreUploadErrors) throw e;
+			else log.log("Error on upload: ", e.error["error"]["message"]);
 		return;
-	}
+		}
+
 		string id = response["id"].str;
 		string cTag = response["cTag"].str;
 		SysTime mtime = timeLastModified(path).toUTC();
