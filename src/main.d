@@ -36,7 +36,7 @@ int main(string[] args)
 			"print-token", "Print the access token, useful for debugging", &printAccessToken,
 			"resync", "Forget the last saved state, perform a full sync", &resync,
 			"syncdir", "Set the directory used to sync the files are synced", &syncDirName,
-			"ignore-errors|i", "Ignore upload errors", &ignoreErrors",
+			"ignore-errors|i", "Ignore upload errors", &ignoreErrors,
 			"verbose|v", "Print more details, useful for debugging", &log.verbose,
 			"version", "Print the version and exit", &printVersion
 		);
