@@ -62,7 +62,7 @@ int main(string[] args)
 	log.vlog("Loading config ...");
 	configDirName = configDirName.expandTilde().absolutePath();
 	if (!exists(configDirName)) mkdirRecurse(configDirName);
-	auto cfg = new config.Config(configDirName);
+	auto cfg = new config.Config(configDirName, ignoreErrors);
 	cfg.init();
 	
 	// command line parameters override the config
