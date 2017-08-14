@@ -8,6 +8,7 @@ final class Config
 	public string deltaLinkFilePath;
 	public string databaseFilePath;
 	public string uploadStateFilePath;
+	public bool ignoreUploadErrors;
 	public string syncListFilePath;
 
 	private string userConfigFilePath;
@@ -20,6 +21,7 @@ final class Config
 		deltaLinkFilePath = configDirName ~ "/delta_link";
 		databaseFilePath = configDirName ~ "/items.sqlite3";
 		uploadStateFilePath = configDirName ~ "/resume_upload";
+		ignoreUploadErrors = ignoreErrors;
 		userConfigFilePath = configDirName ~ "/config";
 		syncListFilePath = configDirName ~ "/sync_list";
 	}
